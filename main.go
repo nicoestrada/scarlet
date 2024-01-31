@@ -1,24 +1,11 @@
+/*
+Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+
+*/
 package main
 
-import (
-	"fmt"
-	"log"
-	"os"
-
-	"github.com/urfave/cli/v2"
-)
+import "scarlet-cli/cmd"
 
 func main() {
-	app := &cli.App{
-		Name:  "new",
-		Usage: "make a new command with the Cli package",
-		Action: func(*cli.Context) error {
-			fmt.Println("Here's a new command")
-			return nil
-		},
-	}
-
-	if err := app.Run(os.Args); err != nil {
-		log.Fatal(err)
-	}
+	cmd.Execute()
 }
