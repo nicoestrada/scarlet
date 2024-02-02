@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 Nico Estrada estradanicolas@gmail.com
 */
 package cmd
 
@@ -15,12 +15,11 @@ var rootCmd = &cobra.Command{
 	Short: "A brief description of your application",
 	Long: `Welcome to scarlet-cli! This is a cli app written in Go by Nico Estrada. 
 	
-	A longer description that spans multiple lines and likely contains
-	examples and usage of using your application. For example:
+	Please select from the available commands what
+	you would like to do.
 
-	Cobra is a CLI library for Go that empowers applications.
-	This application is a tool to generate the needed files
-	to quickly create a Cobra application.`,
+	Scarlet-CLI gives you the ability to track and 
+	manage your subscriptions.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
