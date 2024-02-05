@@ -20,15 +20,23 @@ func getCustomers() {
 	}
 	stripe.Key = os.Getenv("STRIPE_API_KEY")
 
-	params := &stripe.CustomerListParams{}
+	params := &stripe.CustomerListParams{
+		//create a stdin to pass customer email here
+		Email: stripe.String(""),
+	}
 	//prevents auto pagination
 	params.Single = true
 	params.Limit = stripe.Int64(10)
 
 	i := customer.List(params)
-	for i.Next() {
-		c := i.Customer()
-		fmt.Println(c.Email)
+	//check to see if customer exists
+	if i.Next() {
+		for i.Next() {
+			c := i.Customer()
+			fmt.Println(c.Name, "-", c.Email)
+		}
+	} else {
+		fmt.Println("No customer found.")
 	}
 
 }
@@ -44,7 +52,6 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Your most recent 10 customers are...")
 		getCustomers()
 	},
 }
