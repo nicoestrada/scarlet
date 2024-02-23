@@ -28,14 +28,14 @@ func getCustomers() {
 	fmt.Println("Enter the email address:")
 
 	//call the reader to read the address
-	key, err := reader.ReadString('\n')
+	customerEmail, err := reader.ReadString('\n')
 	if err != nil {
 		panic(err)
 	}
 
 	params := &stripe.CustomerListParams{
 		//pass the trimmed whitespaces of the email
-		Email: stripe.String(strings.TrimSpace(key)),
+		Email: stripe.String(strings.TrimSpace(customerEmail)),
 	}
 	//prevents auto pagination
 	params.Single = true
