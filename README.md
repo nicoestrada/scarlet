@@ -1,8 +1,8 @@
 ## Scarlet-CLI
 
-### A cli app for SaaS founders
+### A Stripe CLI App for SaaS founders
 
-The purpose of this was to build a useful tool for my SaaS without having to login to the Stripe dashboard to view basic info like mrr, if a customer exists. Having to verify in the webapp takes too much time.
+The purpose of this was to build a useful tool for my SaaS without having to login to the Stripe dashboard to view basic info like mrr or if a customer exists when replying to tickets. Having to verify in the webapp takes too much time.
 
 Current subcommands are `mrr` and `customers`
 
