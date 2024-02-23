@@ -4,8 +4,10 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"bufio"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/joho/godotenv"
 	"github.com/spf13/cobra"
@@ -20,23 +22,33 @@ func getCustomers() {
 	}
 	stripe.Key = os.Getenv("STRIPE_API_KEY")
 
+	// initiate user input reader
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Println("Enter the email address:")
+
+	//call the reader to read the address
+	key, err := reader.ReadString('\n')
+	if err != nil {
+		panic(err)
+	}
+
 	params := &stripe.CustomerListParams{
-		//create a stdin to pass customer email here
-		Email: stripe.String(""),
+		//pass the trimmed whitespaces of the email
+		Email: stripe.String(strings.TrimSpace(key)),
 	}
 	//prevents auto pagination
 	params.Single = true
 	params.Limit = stripe.Int64(10)
 
 	i := customer.List(params)
+
 	//check to see if customer exists
 	if i.Next() {
-		for i.Next() {
-			c := i.Customer()
-			fmt.Println(c.Name, "-", c.Email)
-		}
+		c := i.Customer()
+		fmt.Println("✅ Customer found: ", c.Name, "-", c.Email)
 	} else {
-		fmt.Println("No customer found.")
+		fmt.Println("❌ No customer found.")
 	}
 
 }
